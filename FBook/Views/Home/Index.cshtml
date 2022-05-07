@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <p class="display-4">Welcome to FPTBook</p>
+    <div class="col-3">
+        <form asp-action="Index" method="get" style="user-select: auto;">
+            <div class="d-flex">
+                <input type="text" class="form-control  me-sm-2" name="SearchString" placeholder="Search by Title"/>
+                <input type="submit" value="Search" class="btn btn-primary my-2 my-sm-0"/>
+            </div>
+        </form>
+        <div class="text-start">
+            <a asp-action="Index">Back to full list</a>
+        </div>
+    </div>
+    <div class="row pb-2 align-items-stretch">
+        @foreach(var obj in Model) {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12  p-1 bg-light" style="border: 1px solid #0e0a0a; border-radius: 5px; ">
+                    <div class="card overflow-hidden" style="border:0px;">
+                        <img src="@obj.ImgUrl" class="card-img-top rounded" />
+                        <div class="pl-1">
+                            <p class="card-title h5 mt-2" style="clear: both;display: inline-block;white-space: nowrap;"><b>@obj.Title</b></p>
+                        </div>
+                    </div>
+                    <div >
+                        <a asp-action="Details" class="btn btn-success rounded" asp-route-isbn="@obj.Isbn">Details</a>
+                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-isbn="@obj.Isbn" class="btn btn-warning rounded">Add to cart</a>
+                    </div>
+                </div>          
+            </div>
+        </div>
+        }
+    </div>
+    <div style="display:flex;text-align:center;justify-content:center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (var i = 0; i < @ViewBag.numberOfPages; i++)
+            {
+                var style = (ViewBag.currentPage == @i) ? "active" : "";
+                <li class="page-item @style">
+                    <a class="page-link" asp-route-id="@i">@(i+1)</a>
+                </li>
+            }
+         </ul>
+    </nav>
+</div>
+</div>

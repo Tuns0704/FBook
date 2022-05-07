@@ -1,0 +1,48 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "Delete Book";
+}
+<form method="post" enctype="multipart/form-data" asp-action="DeletePOST">
+    <input asp-for="Isbn" hidden/>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-dark">Delete Book</h2>
+            <hr />
+        </div>
+        <div class="mb-2">
+            <label asp-for="Isbn">ISBN</label>
+            <input asp-for="Isbn" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Pages"></label>
+            <input asp-for="Pages" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" disabled class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Desc"></label>
+            <textarea asp-for="Desc" disabled class="form-control"></textarea>
+        </div>
+        <div class="mb-2">
+            <label asp-for="ImgUrl"></label>
+            <input type="file" asp-for="ImgUrl" disabled class="form-control"/> 
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-controller="Book" asp-action="Index" class="btn btn-success">Back to list</a>
+    </div>
+</form>
+
